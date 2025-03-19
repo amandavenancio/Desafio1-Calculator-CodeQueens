@@ -18,36 +18,51 @@ A interface foi estilizada com **Styled Components**, garantindo um design moder
 ### 1️⃣ **Clone o repositório**  
 ```sh
 git clone https://github.com/seu-usuario/seu-repositorio.git
+```
 
 ### 2️⃣ **Acesse a pasta do projeto**
-
+```sh
 cd nome-do-projeto
+```
 
 ### 3️⃣ **Instale as dependências**
+```sh
 npm install
+```
 
 ### 4️⃣ **Inicie a aplicação**
+```sh
 npm run dev
+```
 
 Agora, abra o navegador e acesse http://localhost:5173/ para ver a calculadora em ação! 🚀
 
-✨ Funcionalidades
+## ✨ Funcionalidades
+
+
 ✔ Permite inserir dois números e calcular soma, subtração, multiplicação e divisão
+
 ✔ Exibe os resultados de forma organizada e legível
+
 ✔ Arredonda números para 2 casas decimais apenas quando necessário
+
 ✔ Design responsivo para funcionar bem em qualquer tela
 
-🧪 Testes
+## 🧪 Testes
+
 Este projeto utiliza Vitest para testes. Para rodar os testes, use:
+```sh
+npm run test
+```
 
-npm test
+## 📸 Captura de Tela
 
-📸 Captura de Tela
+## 🔗 Contribuição
 
-🔗 Contribuição
 Sinta-se à vontade para contribuir! Faça um fork do projeto, crie uma branch com suas melhorias e abra um pull request. 😃
 
-📄 Licença
+## 📄 Licença
+
 Este projeto está sob a licença MIT.
 
 📌 Desenvolvido por Amanda Venancio 🚀
