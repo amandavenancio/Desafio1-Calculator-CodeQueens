@@ -1,5 +1,6 @@
 .container {
   max-width: 400px;
+  width: 90%; /* Permite que o layout se ajuste em telas menores */
   margin: 40px auto;
   padding: 20px;
   background-color: #ffffff;
@@ -10,10 +11,11 @@
 
 h2 {
   color: #333;
+  font-size: 1.5rem;
 }
 
 input {
-  width: 80%;
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 2px solid #ddd;
@@ -46,7 +48,25 @@ button:hover {
   border-radius: 5px;
 }
 
-p {
-  font-size: 18px;
-  color: #333;
+/* 📱 Ajustes para telas menores */
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  input, button {
+    font-size: 14px;
+  }
+}
+
+/* 💻 Ajustes para telas maiores */
+@media (min-width: 768px) {
+  .container {
+    max-width: 500px;
+  }
 }

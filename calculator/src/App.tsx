@@ -1,10 +1,12 @@
 import Calculator from "./components/Calculator";
+import GlobalStyle from "./styles/GlobalStyles";
 
 const App = () => {
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", backgroundColor: "#f0f2f5" }}>
+    <>
+      <GlobalStyle />
       <Calculator />
-    </div>
+    </>
   );
 };
 

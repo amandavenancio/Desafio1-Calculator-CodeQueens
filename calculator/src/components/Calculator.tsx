@@ -1,44 +1,101 @@
 import { useState } from "react";
 import { add, subtract, multiply, divide } from "../utils/mathOperations";
-import styles from "./Calculator.module.css";
+import styled from "styled-components";
 
+// 🔹 Estilos usando Styled Components
+const Container = styled.div`
+  max-width: 400px;
+  width: 90%;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+`;
+
+const Title = styled.h2`
+  color: #333;
+  font-size: 1.5rem;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: center;
+`;
+
+const Button = styled.button`
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const Results = styled.div`
+  margin-top: 20px;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 5px;
+`;
+
+const ResultText = styled.p`
+  font-size: 18px;
+  color: #333;
+`;
+
+// 🔹 Componente principal
 const Calculator = () => {
   const [num1, setNum1] = useState<number | "">("");
   const [num2, setNum2] = useState<number | "">("");
-  const [showResults, setShowResults] = useState(false);
+  const [results, setResults] = useState<{ add: number; subtract: number; multiply: number; divide: string | number } | null>(null);
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>, setNum: React.Dispatch<React.SetStateAction<number | "">>) => {
     setNum(e.target.value === "" ? "" : parseFloat(e.target.value));
   };
 
-  return (
-    <div className={styles.container}>
-      <h2>Calculadora Básica</h2>
-      <input
-        type="number"
-        value={num1}
-        onChange={(e) => handleInput(e, setNum1)}
-        placeholder="Digite o primeiro número"
-      />
-      <input
-        type="number"
-        value={num2}
-        onChange={(e) => handleInput(e, setNum2)}
-        placeholder="Digite o segundo número"
-      />
-      <button onClick={handleCalculate} disabled={num1 === "" || num2 === ""}>
-        Calcular
-      </button>
+  const handleCalculate = () => {
+    if (num1 !== "" && num2 !== "") {
+      setResults({
+        add: add(num1, num2),
+        subtract: subtract(num1, num2),
+        multiply: multiply(num1, num2),
+        divide: num2 === 0 ? "Erro (divisão por zero)" : divide(num1, num2),
+      });
+    }
+  };
 
-      {showResults && num1 !== "" && num2 !== "" && (
-        <div className={styles.results}>
-          <p>Adição: {add(num1, num2)}</p>
-          <p>Subtração: {subtract(num1, num2)}</p>
-          <p>Multiplicação: {multiply(num1, num2)}</p>
-          <p>Divisão: {isNaN(divide(num1, num2)) ? "Erro (divisão por zero)" : divide(num1, num2)}</p>
-        </div>
+  return (
+    <Container>
+      <Title>Calculadora Básica</Title>
+      <Input type="number" value={num1} onChange={(e) => handleInput(e, setNum1)} placeholder="Digite o primeiro número" />
+      <Input type="number" value={num2} onChange={(e) => handleInput(e, setNum2)} placeholder="Digite o segundo número" />
+      <Button onClick={handleCalculate} disabled={num1 === "" || num2 === ""}>
+        Calcular
+      </Button>
+
+      {results && (
+        <Results>
+          <ResultText>Adição: {results.add}</ResultText>
+          <ResultText>Subtração: {results.subtract}</ResultText>
+          <ResultText>Multiplicação: {results.multiply}</ResultText>
+          <ResultText>Divisão: {results.divide}</ResultText>
+        </Results>
       )}
-    </div>
+    </Container>
   );
 };
 
