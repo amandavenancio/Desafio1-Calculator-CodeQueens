@@ -2,7 +2,7 @@ import { useState } from "react";
 import { add, subtract, multiply, divide } from "../utils/mathOperations";
 import styled from "styled-components";
 
-// 🔹 Estilos usando Styled Components
+// 🔹 Estilos
 const Container = styled.div`
   max-width: 400px;
   width: 90%;
@@ -29,19 +29,31 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  width: 100%;
+  width: 48%;
   padding: 10px;
   margin-top: 15px;
   font-size: 16px;
-  background-color: #007bff;
-  color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background 0.3s;
+`;
+
+const CalculateButton = styled(Button)`
+  background-color: #007bff;
+  color: white;
 
   &:hover {
     background-color: #0056b3;
+  }
+`;
+
+const ClearButton = styled(Button)`
+  background-color: #dc3545;
+  color: white;
+
+  &:hover {
+    background-color: #a71d2a;
   }
 `;
 
@@ -78,14 +90,24 @@ const Calculator = () => {
     }
   };
 
+  const handleClear = () => {
+    setNum1("");
+    setNum2("");
+    setResults(null);
+  };
+
   return (
     <Container>
       <Title>Calculadora Básica</Title>
       <Input type="number" value={num1} onChange={(e) => handleInput(e, setNum1)} placeholder="Digite o primeiro número" />
       <Input type="number" value={num2} onChange={(e) => handleInput(e, setNum2)} placeholder="Digite o segundo número" />
-      <Button onClick={handleCalculate} disabled={num1 === "" || num2 === ""}>
-        Calcular
-      </Button>
+      
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <CalculateButton onClick={handleCalculate} disabled={num1 === "" || num2 === ""}>
+          Calcular
+        </CalculateButton>
+        <ClearButton onClick={handleClear}>Limpar</ClearButton>
+      </div>
 
       {results && (
         <Results>
