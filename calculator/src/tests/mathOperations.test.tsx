@@ -18,7 +18,7 @@ describe("mathOperations", () => {
     expect(divide(10, 2)).toBe(5);
   });
 
-  it("should return NaN when dividing by zero", () => {
-    expect(divide(5, 0)).toBeNaN();
+  it("should return an error message when dividing by zero", () => {
+    expect(divide(5, 0)).toBe("Erro (divisão por zero)");
   });
 });
