@@ -57,6 +57,9 @@ npm run test
 
 ## 📸 Captura de Tela
 
+![image](https://github.com/user-attachments/assets/29fd593f-977e-417b-b5f9-d3c714d0d44f)
+![image](https://github.com/user-attachments/assets/c8dd387e-18e0-4ffb-89c2-d9c94345859f)
+
 ## 🔗 Contribuição
 
 Sinta-se à vontade para contribuir! Faça um fork do projeto, crie uma branch com suas melhorias e abra um pull request. 😃
