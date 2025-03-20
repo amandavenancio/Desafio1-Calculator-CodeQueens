@@ -98,7 +98,7 @@ const Calculator = () => {
 
   return (
     <Container>
-      <Title>Calculadora Básica</Title>
+      <Title>Calculadora</Title>
       <Input type="number" value={num1} onChange={(e) => handleInput(e, setNum1)} placeholder="Digite o primeiro número" />
       <Input type="number" value={num2} onChange={(e) => handleInput(e, setNum2)} placeholder="Digite o segundo número" />
       
