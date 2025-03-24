@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { add, subtract, multiply, divide } from "../utils/mathOperations";
+import InputField from "./InputField";
+import Results from "./Results";
+import { CalcButton, ResetButton } from "./Button";
 import styled from "styled-components";
 
-// 🔹 Estilos
 const Container = styled.div`
   max-width: 400px;
   width: 90%;
@@ -18,58 +20,6 @@ const Title = styled.h2`
   font-size: 1.5rem;
 `;
 
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 2px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-  text-align: center;
-`;
-
-const Button = styled.button`
-  width: 48%;
-  padding: 10px;
-  margin-top: 15px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background 0.3s;
-`;
-
-const CalculateButton = styled(Button)`
-  background-color: #007bff;
-  color: white;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
-
-const ClearButton = styled(Button)`
-  background-color: #dc3545;
-  color: white;
-
-  &:hover {
-    background-color: #a71d2a;
-  }
-`;
-
-const Results = styled.div`
-  margin-top: 20px;
-  padding: 15px;
-  background: #f8f9fa;
-  border-radius: 5px;
-`;
-
-const ResultText = styled.p`
-  font-size: 18px;
-  color: #333;
-`;
-
-// 🔹 Componente principal
 const Calculator = () => {
   const [num1, setNum1] = useState<number | "">("");
   const [num2, setNum2] = useState<number | "">("");
@@ -99,24 +49,15 @@ const Calculator = () => {
   return (
     <Container>
       <Title>Calculadora</Title>
-      <Input type="number" value={num1} onChange={(e) => handleInput(e, setNum1)} placeholder="Digite o primeiro número" />
-      <Input type="number" value={num2} onChange={(e) => handleInput(e, setNum2)} placeholder="Digite o segundo número" />
+      <InputField value={num1} onChange={(e) => handleInput(e, setNum1)} placeholder="Digite o primeiro número" />
+      <InputField value={num2} onChange={(e) => handleInput(e, setNum2)} placeholder="Digite o segundo número" />
       
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <CalculateButton onClick={handleCalculate} disabled={num1 === "" || num2 === ""}>
-          Calcular
-        </CalculateButton>
-        <ClearButton onClick={handleClear}>Limpar</ClearButton>
+        <CalcButton onClick={handleCalculate} disabled={num1 === "" || num2 === ""}>Calcular</CalcButton>
+        <ResetButton onClick={handleClear}>Limpar</ResetButton>
       </div>
 
-      {results && (
-        <Results>
-          <ResultText>Adição: {results.add}</ResultText>
-          <ResultText>Subtração: {results.subtract}</ResultText>
-          <ResultText>Multiplicação: {results.multiply}</ResultText>
-          <ResultText>Divisão: {results.divide}</ResultText>
-        </Results>
-      )}
+      {results && <Results results={results} />}
     </Container>
   );
 };
