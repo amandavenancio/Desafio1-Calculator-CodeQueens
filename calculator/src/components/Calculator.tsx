@@ -21,21 +21,28 @@ const Title = styled.h2`
 `;
 
 const Calculator = () => {
-  const [num1, setNum1] = useState<number | "">("");
-  const [num2, setNum2] = useState<number | "">("");
+  const [num1, setNum1] = useState<string>("");
+  const [num2, setNum2] = useState<string>("");
   const [results, setResults] = useState<{ add: number; subtract: number; multiply: number; divide: string | number } | null>(null);
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>, setNum: React.Dispatch<React.SetStateAction<number | "">>) => {
-    setNum(e.target.value === "" ? "" : parseFloat(e.target.value));
+  const handleInput = (e: React.ChangeEvent<HTMLInputElement>, setNum: React.Dispatch<React.SetStateAction<string>>) => {
+    const value = e.target.value;
+  
+    // Permite apenas números e um único ponto decimal, bloqueando "e" e outros caracteres inválidos
+    if (/^\d*\.?\d*$/.test(value)) {
+      setNum(value);
+    }
   };
 
   const handleCalculate = () => {
-    if (num1 !== "" && num2 !== "") {
+    const n1 = parseFloat(num1);
+    const n2 = parseFloat(num2);
+    if (!isNaN(n1) && !isNaN(n2)) {
       setResults({
-        add: add(num1, num2),
-        subtract: subtract(num1, num2),
-        multiply: multiply(num1, num2),
-        divide: num2 === 0 ? "Erro (divisão por zero)" : divide(num1, num2),
+        add: add(n1, n2),
+        subtract: subtract(n1, n2),
+        multiply: multiply(n1, n2),
+        divide: n2 === 0 ? "Erro (divisão por zero)" : divide(n1, n2),
       });
     }
   };
