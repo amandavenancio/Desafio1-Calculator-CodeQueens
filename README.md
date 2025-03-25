@@ -22,7 +22,7 @@ git clone https://github.com/amandavenancio/Desafio1-Calculator-CodeQueens
 
 ### 2️⃣ **Acesse a pasta do projeto**
 ```sh
-cd nome-do-projeto
+cd calculator
 ```
 
 ### 3️⃣ **Instale as dependências**
