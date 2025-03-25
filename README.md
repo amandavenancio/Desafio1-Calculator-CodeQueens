@@ -17,7 +17,7 @@ A interface foi estilizada com **Styled Components**, garantindo um design moder
 ## 🛠️ **Instalação e Execução**
 ### 1️⃣ **Clone o repositório**  
 ```sh
-git clone https://github.com/seu-usuario/seu-repositorio.git
+git clone https://github.com/amandavenancio/Desafio1-Calculator-CodeQueens
 ```
 
 ### 2️⃣ **Acesse a pasta do projeto**
